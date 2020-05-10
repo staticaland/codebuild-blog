@@ -1,20 +1,21 @@
 version: 0.2
 
+env:
+  variables:
+    HUGO_VERSION: "0.58.3"
+
 phases:
   install:
     runtime-versions:
-      python: 3.8
+      golang: 1.12
     commands:
-      - echo Installing hugo
-      - apt-get install hugo
-  pre_build:
-    commands:
-      - echo In pre_build phase..
-      - echo Current directory is $CODEBUILD_SRC_DIR
-      - ls -la
+      - wget "https://github.com/gohugoio/hugo/releases/download/v{HUGO_VERSION}/hugo_extended_{HUGO_VERSION}_Linux-64bit.deb"
+      - dpkg -i hugo_extended_${HUGO_VERSION}_Linux-64bit.deb
+    finally:
+      - hugo version
   build:
     commands:
-      - hugo -v
+      - hugo
 artifacts:
   files:
     - '**/*'
