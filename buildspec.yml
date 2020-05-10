@@ -1,0 +1,19 @@
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      - echo Installing hugo
+      - apt-get install hugo
+  pre_build:
+    commands:
+      - echo In pre_build phase..
+      - echo Current directory is $CODEBUILD_SRC_DIR
+      - ls -la
+  build:
+    commands:
+      - hugo -v
+artifacts:
+  files:
+    - '**/*'
+  base-directory: public
