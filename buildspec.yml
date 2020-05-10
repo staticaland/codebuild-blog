@@ -3,13 +3,12 @@ version: 0.2
 env:
   variables:
     HUGO_VERSION: "0.70.0"
-
 phases:
   install:
     runtime-versions:
       golang: 1.12
     commands:
-      - wget "https://github.com/gohugoio/hugo/releases/download/v{HUGO_VERSION}/hugo_extended_{HUGO_VERSION}_Linux-64bit.deb"
+      - wget "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.deb"
       - dpkg -i hugo_extended_${HUGO_VERSION}_Linux-64bit.deb
     finally:
       - hugo version
